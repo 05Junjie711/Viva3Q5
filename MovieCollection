@@ -24,23 +24,29 @@ public class MovieCollection {
         
     }
     //Removes a movie by its title.
-    public void removeMovie(String title){
-        boolean found = false;
-        for(int i =0; i<numMovies;i++){
-            if(movieCollection[i].getTitle().equalsIgnoreCase(title)){
-                for(int j=1;j<numMovies-1;j++){
-                    movieCollection[j]=movieCollection[j+1];
-                }
-                movieCollection[numMovies-1]=null;
-                numMovies--;
-                System.out.println("Removed movie: "+title);
-                found = true;
-                break;
-            }}
-            if(!found)
-                System.out.println("Movie with title: '"+title+"'is not found.");
+    public void removeMovie(String title) {
+    boolean found = false;
+    // Loop through all movies
+    for (int i = 0; i < numMovies; i++) {
+        if (movieCollection[i].getTitle().equalsIgnoreCase(title)) {
             
+            for (int j = i; j < numMovies - 1; j++) {
+                movieCollection[j] = movieCollection[j + 1];
+            }
+            
+            movieCollection[numMovies - 1] = null;
+            numMovies--;  
+            i--;  
+            found = true;
+        }
     }
+
+    if (!found) {
+        System.out.println("No movies found directed by: " + title);
+    } else {
+        System.out.println("Removed movie: " + title);
+    }
+}
     
     public void findmovieCollectionByDirector(String director){
         boolean found = false;
